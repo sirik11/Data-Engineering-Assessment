@@ -1,0 +1,18 @@
+# Terraform
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+override.tf
+override.tf.json
+
+# Python
+__pycache__/
+*.py[cod]
+.env
+
+# Test output
+output.json
+
+# OS
+.DS_Store
