@@ -146,7 +146,7 @@ terraform apply -var-file="vars.tfvars" -target=module.ecr_repo
 ```bash
 # Set your values
 LOCAL_IMAGE_NAME="nmd-lambda"
-AWS_ACCOUNT_ID="888577066340"
+AWS_ACCOUNT_ID="<your-account-id>"
 REGION="us-west-2"
 ECR_URI="$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/nmd-assignment-sai_shirish-ecr"
 
