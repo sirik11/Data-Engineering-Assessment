@@ -20,7 +20,7 @@ Everything is provisioned using Terraform and the Lambda runs inside a Docker co
 │   │             │                │                               │  │
 │   │ orders.csv  │                │  1. Read CSV from S3          │  │
 │   └─────────────┘                │  2. Calculate profit          │  │
-│                                  │  3. Run 3 analytics reports   │  │
+│                                  │  3. Generate analytics reports │  │
 │   ┌─────────────┐                │  4. Write CSVs to output      │  │
 │   │  ECR Repo   │ ── image ────► │                               │  │
 │   │             │                └──────────────┬───────────────┘  │
@@ -223,6 +223,22 @@ The Lambda function's IAM role is given only the permissions it actually needs:
 - `s3:PutObject` on the output bucket — so it can write the analytics reports
 
 It cannot list buckets, delete files, or access any other AWS service. This follows the principle of least privilege.
+
+---
+
+## Assumptions
+
+- Each Lambda invocation processes a single uploaded CSV file
+- Input data schema is consistent with the provided sample
+- Outputs overwrite previous results on each run
+
+---
+
+## Improvements
+
+- Add partitioned output (e.g., by date) for scalability
+- Add retry logic for failed S3 reads
+- Add monitoring using CloudWatch metrics and alerts
 
 ---
 
